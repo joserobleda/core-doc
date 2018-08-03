@@ -1,0 +1,9 @@
+{
+  "name": "joserobleda/core-doc-bundle",
+  "type": "symfony-bundle",
+  "autoload": {
+    "psr-4": {
+      "CoreDoc\\CoreDocBundle\\": ""
+    }
+  }
+}
