@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CoreDoc\CoreDocBundle\Controller;
+namespace JR\CoreDocBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 

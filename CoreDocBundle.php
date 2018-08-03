@@ -1,6 +1,6 @@
 <?php
 
-namespace App\CoreDoc\CoreDocBundle;
+namespace JR\CoreDocBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
