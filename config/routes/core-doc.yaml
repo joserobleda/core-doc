@@ -1,4 +1,4 @@
 coredoc_bundle:
     path: /coredoc
-    defaults: { _controller: CoreDocBundle:CoreDoc:docUi }
+    defaults: { _controller: JR\CoreDocBundle\Controller\CoreDocController::docUiAction }
     methods: [GET]
