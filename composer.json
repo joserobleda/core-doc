@@ -5,5 +5,8 @@
     "psr-4": {
       "JR\\CoreDocBundle\\": ""
     }
+  },
+  "require": {
+    "phpdocumentor/reflection-docblock": "^4.3"
   }
 }
