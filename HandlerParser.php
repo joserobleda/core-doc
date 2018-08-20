@@ -29,7 +29,7 @@ class HandlerParser
         }
 
         $reader = new AnnotationReader();
-        $annotation = $reader->getClassAnnotation($rc,  CoreDoc::class);
+        $annotation = $reader->getClassAnnotation($rc, CoreDoc::class);
 
         return $annotation;
     }
