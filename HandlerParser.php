@@ -2,20 +2,17 @@
 
 namespace JR\CoreDocBundle;
 
-use phpDocumentor\Reflection\DocBlockFactoryInterface;
+use Doctrine\Common\Annotations\AnnotationReader;
+use JR\CoreDocBundle\Annotation\CoreDoc;
 
 class HandlerParser
 {
     /** @var HandlerMap */
     private $map;
 
-    /** @var DocBlockFactoryInterface */
-    private $docBlockFactory;
-
-    public function __construct(HandlerMap $map, DocBlockFactoryInterface $docBlockFactory)
+    public function __construct(HandlerMap $map)
     {
         $this->map = $map;
-        $this->docBlockFactory = $docBlockFactory;
     }
 
     public function parse()
@@ -31,6 +28,9 @@ class HandlerParser
             return null;
         }
 
-        return $this->docBlockFactory->create($rc->getDocComment());
+        $reader = new AnnotationReader();
+        $annotation = $reader->getClassAnnotation($rc,  CoreDoc::class);
+
+        return $annotation;
     }
 }

@@ -15,10 +15,6 @@ services:
         resource: '../../Command'
         tags: ['console.command']
 
-    core_doc.doc_block_factory:
-        class: \phpDocumentor\Reflection\DocBlockFactory
-        factory: ['\phpDocumentor\Reflection\DocBlockFactory', 'createInstance']
-
     core_doc.handler_map:
         class: JR\CoreDocBundle\HandlerMap
         arguments:
@@ -27,4 +23,4 @@ services:
     core_doc.handler_parser:
         public: true
         class: JR\CoreDocBundle\HandlerParser
-        arguments: ["@core_doc.handler_map", "@core_doc.doc_block_factory"]
+        arguments: ["@core_doc.handler_map"]

@@ -6,7 +6,7 @@
       "JR\\CoreDocBundle\\": ""
     }
   },
-  "require": {
-    "phpdocumentor/reflection-docblock": "^4.3"
+  "require-dev": {
+    "doctrine/annotations": "^1.6"
   }
 }
