@@ -4,6 +4,7 @@ namespace JR\CoreDocBundle;
 
 use Doctrine\Common\Annotations\Reader;
 use JR\CoreDocBundle\Annotation\Command;
+use JR\CoreDocBundle\Annotation\Event;
 
 class HandlerParser
 {
@@ -24,7 +25,7 @@ class HandlerParser
         return array_map([$this, 'parseCommand'], $this->map->getHandlers());
     }
 
-    private function parseCommand($class)
+    private function getAnnotation(string $class, string $annotationClass)
     {
         try {
             $rc = new \ReflectionClass($class);
@@ -32,10 +33,23 @@ class HandlerParser
             return null;
         }
 
-        /** @var Command $annotation */
-        $annotation = $this->reader->getClassAnnotation($rc, Command::class);
-        $annotation->setClassName($class);
+        return $this->reader->getClassAnnotation($rc, $annotationClass);
+    }
 
-        return $annotation;
+    private function parseCommand($class)
+    {
+        $annotation = $this->getAnnotation($class, Command::class);
+
+        $events = array_map(function (string $eventClass) {
+            return $this->getAnnotation($eventClass, Event::class);
+        }, $annotation->events);
+
+        $doc = new CommandDoc(
+            $class,
+            $annotation->description,
+            $events
+        );
+
+        return $doc;
     }
 }
