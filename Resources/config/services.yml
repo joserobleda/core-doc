@@ -15,6 +15,9 @@ services:
         resource: '../../Command'
         tags: ['console.command']
 
+    core_doc.annotation_reader:
+        class: Doctrine\Common\Annotations\AnnotationReader
+
     core_doc.handler_map:
         class: JR\CoreDocBundle\HandlerMap
         arguments:
@@ -23,4 +26,4 @@ services:
     core_doc.handler_parser:
         public: true
         class: JR\CoreDocBundle\HandlerParser
-        arguments: ["@core_doc.handler_map"]
+        arguments: ["@core_doc.handler_map", "@core_doc.annotation_reader"]

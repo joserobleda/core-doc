@@ -2,6 +2,7 @@
 
 namespace JR\CoreDocBundle\Command;
 
+use JR\CoreDocBundle\Annotation\Command;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -23,8 +24,9 @@ class CoreDocCommand extends ContainerAwareCommand
         $parser = $this->getContainer()->get('core_doc.handler_parser');
         $docs = $parser->parse();
 
-        foreach ($docs as $handler => $command) {
-            $output->writeln("👉 {$command}");
+        /** @var Command $command */
+        foreach ($docs as $command) {
+            $output->writeln("👉 {$command->getClassName()} - {$command->getDescription()}");
         }
     }
 }

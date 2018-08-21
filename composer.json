@@ -1,12 +1,13 @@
 {
   "name": "joserobleda/core-doc-bundle",
   "type": "symfony-bundle",
+  "version": "0.2",
   "autoload": {
     "psr-4": {
       "JR\\CoreDocBundle\\": ""
     }
   },
-  "require-dev": {
+  "require": {
     "doctrine/annotations": "^1.6"
   }
 }

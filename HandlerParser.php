@@ -2,17 +2,21 @@
 
 namespace JR\CoreDocBundle;
 
-use Doctrine\Common\Annotations\AnnotationReader;
-use JR\CoreDocBundle\Annotation\CoreDoc;
+use Doctrine\Common\Annotations\Reader;
+use JR\CoreDocBundle\Annotation\Command;
 
 class HandlerParser
 {
     /** @var HandlerMap */
     private $map;
 
-    public function __construct(HandlerMap $map)
+    /** @var Reader */
+    private $reader;
+
+    public function __construct(HandlerMap $map, Reader $reader)
     {
         $this->map = $map;
+        $this->reader = $reader;
     }
 
     public function parse()
@@ -28,8 +32,9 @@ class HandlerParser
             return null;
         }
 
-        $reader = new AnnotationReader();
-        $annotation = $reader->getClassAnnotation($rc, CoreDoc::class);
+        /** @var Command $annotation */
+        $annotation = $this->reader->getClassAnnotation($rc, Command::class);
+        $annotation->setClassName($class);
 
         return $annotation;
     }
