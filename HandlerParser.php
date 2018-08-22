@@ -41,7 +41,9 @@ class HandlerParser
         $annotation = $this->getAnnotation($class, Command::class);
 
         $events = array_map(function (string $eventClass) {
-            return $this->getAnnotation($eventClass, Event::class);
+            $annotation = $this->getAnnotation($eventClass, Event::class);
+
+            return new EventDoc($eventClass, $annotation->description);
         }, $annotation->events);
 
         $doc = new CommandDoc(

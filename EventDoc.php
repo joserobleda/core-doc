@@ -2,7 +2,7 @@
 
 namespace JR\CoreDocBundle;
 
-class CommandDoc
+class EventDoc
 {
     /** @var string */
     private $className;
@@ -10,14 +10,10 @@ class CommandDoc
     /** @var string */
     private $description;
 
-    /** @var array */
-    private $events;
-
-    public function __construct(string $className, string $description, array $events)
+    public function __construct(string $className, string $description)
     {
         $this->className = $className;
         $this->description = $description;
-        $this->events = $events;
     }
 
     public function getClassName(): string
@@ -28,10 +24,5 @@ class CommandDoc
     public function getDescription(): string
     {
         return $this->description;
-    }
-
-    public function getEvents(): array
-    {
-        return $this->events;
     }
 }
